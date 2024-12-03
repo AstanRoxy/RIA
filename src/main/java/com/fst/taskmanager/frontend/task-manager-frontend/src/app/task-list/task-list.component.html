@@ -1,0 +1,11 @@
+<p>task-list works!</p>
+<div class="container">
+    <h1>Liste des Tâches</h1>
+    <ul class="list-group">
+      <li *ngFor="let task of tasks" class="list-group-item">
+        {{ task.name }} - {{ task.status }}
+        <button (click)="deleteTask(task.id)">Supprimer</button>
+      </li>
+    </ul>
+  </div>
+  

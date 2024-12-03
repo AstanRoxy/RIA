@@ -1,7 +1,9 @@
 package com.fst.taskmanager.controller;
 
+import com.fst.taskmanager.exception.UserNotFoundException;
 import com.fst.taskmanager.model.User;
 import com.fst.taskmanager.service.UserService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
 public class UserController {
+    
     private final UserService userService;
 
     // Récupérer tous les utilisateurs
@@ -53,5 +56,10 @@ public class UserController {
         return ResponseEntity.status(404).body(null);  // Par exemple, pour renvoyer une réponse 404
     }
 }
+@ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException e) {
+        return ResponseEntity.status(404).body(e.getMessage());
+  
+    }
 
 }

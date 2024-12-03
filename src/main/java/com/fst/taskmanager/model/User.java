@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Version;
 
 @Entity
 @Getter
@@ -25,6 +26,8 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    @Version
+    private Integer version;  // Assure la cohérence des données
 
     @OneToMany(mappedBy = "user") // Un utilisateur peut avoir plusieurs tâches
     private List<Task> tasks;

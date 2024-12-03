@@ -1,5 +1,6 @@
 package com.fst.taskmanager.service;
 
+import com.fst.taskmanager.exception.UserNotFoundException;
 import com.fst.taskmanager.model.User;
 import com.fst.taskmanager.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -24,6 +25,18 @@ public class UserService {
 
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    public User updateUser(Long id, User user) {
+        Optional<User> existingUserOpt = userRepository.findById(id);
+        if (!existingUserOpt.isPresent()) {
+            throw new UserNotFoundException("Utilisateur non trouvé avec l'ID " + id);
+        } 
+        User existingUser = existingUserOpt.get();
+        existingUser.setUsername(user.getUsername());
+        existingUser.setPassword(user.getPassword());
+        return userRepository.save(existingUser);
+        
     }
 
     @Transactional
