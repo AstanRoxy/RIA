@@ -1,0 +1,69 @@
+<div class="container">
+    <h2>Modifier la tâche</h2>
+  
+    <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)" class="form-group">
+      
+      <!-- ID de la tâche (caché) -->
+      <input type="hidden" name="id" [(ngModel)]="task.id">
+  
+      <!-- Titre de la tâche -->
+      <div class="form-group">
+        <label for="title">Titre de la tâche</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          class="form-control"
+          [(ngModel)]="task.title"
+          required
+        />
+      </div>
+  
+      <!-- Description de la tâche -->
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          class="form-control"
+          [(ngModel)]="task.description"
+          rows="3"
+          required
+        ></textarea>
+      </div>
+  
+      <!-- Catégorie de la tâche -->
+      <div class="form-group">
+        <label for="category">Catégorie</label>
+        <select
+          id="category"
+          name="category"
+          class="form-control"
+          [(ngModel)]="task.category.id"
+          required
+        >
+          <option value="" disabled selected>Sélectionner une catégorie</option>
+          <option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
+  
+      <!-- Case à cocher pour marquer comme terminée -->
+      <div class="form-group">
+        <label for="completed">Tâche terminée</label>
+        <input
+          type="checkbox"
+          id="completed"
+          name="completed"
+          [(ngModel)]="task.completed"
+        />
+      </div>
+  
+      <!-- Bouton de soumission -->
+      <button type="submit" class="btn btn-primary" [disabled]="!taskForm.form.valid">
+        Sauvegarder
+      </button>
+    </form>
+  </div>
+  

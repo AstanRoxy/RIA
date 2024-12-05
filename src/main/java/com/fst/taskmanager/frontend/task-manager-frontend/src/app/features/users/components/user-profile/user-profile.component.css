@@ -1,0 +1,15 @@
+/* Ajoutez ici les styles pour le profil utilisateur */
+h2 {
+    color: #2c3e50;
+  }
+  
+  p {
+    font-size: 16px;
+    color: #7f8c8d;
+  }
+  
+  ng-template {
+    color: #f39c12;
+    font-weight: bold;
+  }
+  

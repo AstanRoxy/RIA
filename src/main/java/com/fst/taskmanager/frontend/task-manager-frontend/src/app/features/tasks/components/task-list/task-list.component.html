@@ -4,8 +4,7 @@
     <ul class="list-group">
       <li *ngFor="let task of tasks" class="list-group-item">
         {{ task.name }} - {{ task.status }}
-        <button (click)="deleteTask(task.id)">Supprimer</button>
+        <button (click)="deleteTask(task.id)" class="btn btn-danger btn-sm">Supprimer</button>
       </li>
     </ul>
-  </div>
-  
+</div>

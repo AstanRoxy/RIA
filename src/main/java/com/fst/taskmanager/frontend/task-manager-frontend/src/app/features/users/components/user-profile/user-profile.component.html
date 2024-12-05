@@ -1,0 +1,13 @@
+<div *ngIf="user; else loading">
+    <h2>{{ user.name }}</h2>
+    <p>Email: {{ user.email }}</p>
+    <p>Adresse: {{ user.address }}</p>
+    <p>Téléphone: {{ user.phone }}</p>
+  
+    <!-- Ajoutez ici plus d'informations sur l'utilisateur selon votre modèle -->
+  </div>
+  
+  <ng-template #loading>
+    <p>Chargement des données utilisateur...</p>
+  </ng-template>
+  

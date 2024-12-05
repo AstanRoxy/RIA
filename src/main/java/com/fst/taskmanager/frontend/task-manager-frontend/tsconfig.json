@@ -19,10 +19,18 @@
     "module": "ES2022",
     "baseUrl": "./",
     "paths": {
-      "com/fst/taskmanager/service/*": ["src/app/service/*"],
-      "com/fst/taskmanager/model/*": ["src/app/model/*"]
+      "app/*": ["app/*"],
+      "@core/*": ["src/app/core/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@features/*": ["src/app/features/*"],
+      "@tasks/*": ["src/app/features/tasks/*"],
+      "@categories/*": ["src/app/features/categories/*"],
+      "@users/*": ["src/app/features/users/*"],
+      "@auth/*": ["src/app/features/auth/*"],
+      "@environments/*": ["src/environments/*"]
     }
-  },
+    },
+  
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
@@ -30,3 +38,4 @@
     "strictTemplates": true
   }
 }
+
