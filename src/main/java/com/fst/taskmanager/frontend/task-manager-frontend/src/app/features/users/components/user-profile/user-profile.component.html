@@ -1,13 +1,17 @@
 <div *ngIf="user; else loading">
-    <h2>{{ user.name }}</h2>
-    <p>Email: {{ user.email }}</p>
-    <p>Adresse: {{ user.address }}</p>
-    <p>Téléphone: {{ user.phone }}</p>
-  
-    <!-- Ajoutez ici plus d'informations sur l'utilisateur selon votre modèle -->
-  </div>
-  
-  <ng-template #loading>
-    <p>Chargement des données utilisateur...</p>
+  <h2>{{ user.username }}</h2>
+  <p>ID: {{ user.id }}</p>
+  <p>Version: {{ user.version }}</p>
+
+  <h3>Tâches :</h3>
+  <ul *ngIf="user.tasks && user.tasks.length > 0; else noTasks">
+      <li *ngFor="let task of user.tasks">{{ task.title }}</li>
+  </ul>
+  <ng-template #noTasks>
+      <p>Aucune tâche à afficher.</p>
   </ng-template>
-  
+</div>
+
+<ng-template #loading>
+  <p>Chargement des données utilisateur...</p>
+</ng-template>

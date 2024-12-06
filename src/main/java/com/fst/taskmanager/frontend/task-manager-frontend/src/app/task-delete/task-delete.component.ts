@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Task } from '../models/task.model';
-import { TaskService } from '../services/task.service';
+import { Task } from '@features/tasks/model/task.model';
+import { TaskService } from '@features/tasks/service/task.service';
+
 
 @Component({
   selector: 'app-task-delete',
@@ -9,7 +10,8 @@ import { TaskService } from '../services/task.service';
   styleUrls: ['./task-delete.component.css']
 })
 export class TaskDeleteComponent implements OnInit {
-  task: Task;
+  task!: Task;
+  
 
   constructor(
     private taskService: TaskService,
@@ -22,9 +24,16 @@ export class TaskDeleteComponent implements OnInit {
   }
 
   loadTask(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.taskService.getTask(id).subscribe(task => this.task = task);
+    const idParam = this.route.snapshot.paramMap.get('id');
+    if (idParam !== null) {
+      const id = +idParam;
+      this.taskService.getTask(id).subscribe(task => this.task = task);
+    } else {
+      console.error('No task ID found in the route');
+      this.router.navigate(['/tasks']); // Redirection en cas d'erreur
+    }
   }
+  
 
   deleteTask(): void {
     this.taskService.deleteTask(this.task.id).subscribe(() => {

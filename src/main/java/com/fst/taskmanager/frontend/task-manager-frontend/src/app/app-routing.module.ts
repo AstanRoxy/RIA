@@ -5,17 +5,17 @@ import { UserProfileComponent } from '@features/users/components/user-profile/us
 
 const routes: Routes = [
   { path: '', redirectTo: '/tasks', pathMatch: 'full' }, // Route par défaut
-    // Autres routes ici
   { path: 'tasks', loadChildren: () => import('@features/tasks/tasks.module').then(m => m.TasksModule) },
-
-
-  { path: '**', redirectTo: '/tasks' }, // Redirection pour routes inexistantes
   { path: 'register', component: RegisterComponent },
   { path: 'user/:id', component: UserProfileComponent },
+  { path: '**', redirectTo: '/tasks' }, // Redirection pour routes inexistantes
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],  // Configuration des routes
+  exports: [RouterModule]  // Exportation pour pouvoir les utiliser ailleurs
 })
 export class AppRoutingModule {}
+
+// Exporter la variable routes pour pouvoir l'utiliser dans d'autres fichiers
+export { routes };
